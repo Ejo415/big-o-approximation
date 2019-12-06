@@ -62,7 +62,7 @@ Probably the second right?  In answering the question, you would no longer visit
 
   > Phone books were how people found numbers of businesses before the Internet.  Look how much fun Homer is having in comparison to the guy behind him.  
 
-If you were to look for a name in a phone book, you might flip to the center, see if your guess were to high or low, and guess again until you could answer your question.  You would not flip the pages one by one.  Our previous function, would still work, but would essentially be flipping our pages one by one.  If you were considering whether a letter were in a string, you reduce the size of your string each time you take a guess.
+If you were to look for a name in a phone book, you might flip to the center, see if your guess were too high or low, and guess again until you could answer your question.  You would not flip the pages one by one.  Our previous function, would still work, but would essentially be flipping our pages one by one.  If you were considering whether a letter were in a string, you reduce the size of your string each time you take a guess.
 
 ![](https://s3-us-west-2.amazonaws.com/curriculum-content/web-development/algorithms/binary_search.png)
 > Binary search divides the dataset with each attempt to find a match.
