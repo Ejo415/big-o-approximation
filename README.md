@@ -160,7 +160,7 @@ Well let's assume the time complexity of our function and is **n^3 + n^2 + n + l
 
 Now consider the following:
 
-| Formula |     log2(n)    |n         | n^2       | n^3   |n^3 + n^2 + n + 100 |
+| Formula |     log2(n)    |n         | n^2       | n^3   |n^3 + n^2 + n + log2(n) + 100 |
 | ------------- |-------------| ------------- |-------------| ------------- |-------------|
 |n = 1000 |9.9|  1000   |  1,000,000 | 1,000,000,000  |   1,001,001,110 |       
 
@@ -170,17 +170,17 @@ Moreover, you can see that compared to n^3, the n^2 doesn't move the dial.  It a
 
 Now if we can exclude something like n^2 when n approaches infinity, we can also exclude anything that we multiply n by. It just doesn't make the type of impact that we care about.  We care about things that change our formula by a factor of n when **n approaches infinity**.  So compared to that, any number you multiply our formula by will be insignificant.    
 
-So in summary, when considering asymptoptic time complexity, we only look to the term with the largest exponent, we only consider the worse case scenario, and we ignore co-efficients as well as any smaller terms.  
+So in summary, when considering asymptoptic time complexity, we only look to the term with the largest exponent, we only consider the worse case scenario, and we ignore coefficients as well as any smaller terms.  
 
 We call this big O.
 
-NOTE: Big O is a little more involved than the intuition presented above. There are two important additional concepts to note. First of all, when people colloquially say big O (pronounced "big oh"), the _technical_ term they usually mean is big ϴ ("big theta"). Big ϴ includes the concept of a "tight asymptotic bound". Using the example above, when our equation was f(n) = n^3 + n^2 + n + log2(n) + 100, big ϴ requires us to describe this with an upper AND lower asymptotic bound. Thus, it would be correct for us to say that ϴ(n) = n^3, but incorrect for us to say ϴ(n) = n^2 OR ϴ(n) = n^4. Technically, big O notation would allow us to correctly say that our function f(n) is O(n) = n^3 or O(n) = n^4, or O(n) = n^5...etc. Under big O notation we are only establishing an upper bound to our function f(n), and thus it is less precise. For the mathematically-minded of you, the formal mathematical definitions of the two are: 
+NOTE: Big O is a little more involved than the intuition presented above. There are two important additional concepts to note. First of all, when people colloquially say big O (pronounced "big oh"), the _technical_ term they usually mean is big ϴ ("big theta"). Big ϴ includes the concept of a "tight asymptotic bound". Using the example above, when our equation was f(n) = n^3 + n^2 + n + log2(n) + 100, big ϴ requires us to describe this with an upper AND lower asymptotic bound. Thus, it would be correct for us to say that ϴ(n) = n^3, but incorrect for us to say ϴ(n) = n^2 OR ϴ(n) = n^4. Technically, big O notation would allow us to correctly say that our function f(n) is O(n) = n^3 or O(n) = n^4, or O(n) = n^5...etc. Under big O notation we are only establishing an upper asymptotic bound to our function f(n), and thus it is less precise. For the mathematically-minded of you, the formal mathematical definitions of the two are: 
  
  For ϴ(g(n)) to describe a function f(n), there exist positive constants c1, c2, and n_o such that `0 <= c1 * g(n) <= f(n) <= c2 * g(n)` for all n >= n_o
  
  For O( g(n) ) to describe a function f(n), there exist positive constants c and n_o such that `0 <= f(n) <= c * g(n)` for all n >= n_0
 
-All that being said, colloquially, people say "big oh" when what they actually mean is "big theta". You can interpret all descriptions of O(n) in this text and most others as actually describing ϴ(n). But someone in an interview may ask you the difference between the two!
+All that being said, colloquially, people say "big oh" when what they actually mean is "big theta". You can interpret all descriptions of O(n) in this text and most others as actually describing ϴ(n). But know that someone in an interview may ask you the difference between the two!
 
 ![](https://s3-us-west-2.amazonaws.com/curriculum-content/web-development/algorithms/time-complexity.png)
 
@@ -244,7 +244,9 @@ function notNSquared(string, letter){
 }
 ```
 
-So in the function above, we don't go through a loop n times, we only go through a loop two times.  So our cost is 2n, and because we ignore multipliers we have a big O of n.  So we don't just count any loops when saying that with each loop the big O increases by a factor of n, we consider nested loops.
+So in the function above, we don't go through a loop n times, we only go through a loop two times.  So our cost is 2n, and because we ignore multipliers we have a big O of n.  So we don't just count any loops when saying that with each loop the big O increases by a factor of n, we consider nested loops, and ONLY loops whose iterations are proportional to n (e.g. which iterate through our dataset).
+
+Counting loops visible in your code is useful but is not a fail-safe method of determining asymptotic runtime. Among other things, you must be mindful of the runtime of built-in functions you are calling in your code. For example, my code could have a single loop, but inside that loop I sort my input array by using the built-in `sort` method. If the sorting algorithm used by the language is `O(n * log2(n))` (which it most likely be), I now have an overall runtime of `O(n * n * log2(n))`, which is `O(n^2 * log2(n))` - with only a single loop in my code. 
 
 ## Summary
 
