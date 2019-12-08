@@ -142,7 +142,7 @@ Well, there are a couple of calculations involved in reaching a precise number, 
 
 Ok, so as you see above, as our input size increases, the number of guesses involved increases, but very slowly.   We can answer the question of whether a letter is in a sorted string over one million characters long in only twenty guesses. 
 
-Just as we could express the time complexity of our original method in terms of the size of the input string (n), we can do so with binary search as well.  The time complexity of our binary search function is log2n (log base 2 of n).  Log base 2 of n just means, given a number, how many times would you have to press divided by two on a calculator to get down to 1.  Notice that when the size gets really large, like over a million it still only takes us 20 guesses.  Our other formula would cost us the size of n, or over a million.  
+Just as we could express the time complexity of our original method in terms of the size of the input string (n), we can do so with binary search as well.  The time complexity of our binary search function is log2n (log base 2 of n, also written lg(n)).  Log base 2 of n just means, given a number, how many times would you have to press divided by two on a calculator to get down to 1.  Notice that when the size gets really large, like over a million it still only takes us 20 guesses.  Our other formula would cost us the size of n, or over a million. Notice that our table above shows that for the log2(n) algorithm, when our input size **doubles**, our runtime only goes up by 1!
 
 ### Simplifying Time Complexity
 
@@ -152,27 +152,35 @@ Now, when we consider time complexity, we never care about how much we need to a
 
 ![](https://s3-us-west-2.amazonaws.com/curriculum-content/web-development/algorithms/time-complexity.png)
 
-So we can now begin to understand that second sentence, "excludes coefficients and lower order terms."  Coefficients just mean anything that we multiply n by, and exclude lower order terms means that we should only consider the "term" with the highest exponent.  For example, let's say that the time complexity of our function is 5n^3 + n^2 + 100n + log2(n) + 100.  Here n^3, n^2, 100n, log2(n) and 100 are all "terms" of the function.  Excluding the lower order terms we would say that the time complexity of our function is 5n^3, and excluding n^3's co-efficient of 5 we would say that the time complexity is  n^3.  
+So we can now begin to understand that second sentence, "excludes coefficients and lower order terms."  Coefficients just mean anything that we multiply n by, and exclude lower order terms means that we should only consider the "term" with the highest exponent.  For example, let's say that the time complexity of our function is 5n^3 + n^2 + 100n + log2(n) + 100.  Here n^3, n^2, 100n, log2(n) and 100 are all "terms" of the function.  Excluding the lower order terms we would say that the time complexity of our function is 5n^3, and excluding n^3's coefficient of 5 we would say that the time complexity is  n^3.  
 
 Ok, so the Internet told us to exclude co-efficients and lower order terms, but can we really just get get away with that?
 
-Well let's assume the time complexity of our function and is **n^3 + n^2 + n + 100** and assume that **n is 1,000**.  
+Well let's assume the time complexity of our function and is **n^3 + n^2 + n + log2(n) + 100** and assume that **n is 1,000**.  
 
 Now consider the following:
 
-| Formula |     log(n)    |n         | n^2       | n^3   |n^3 + n^2 + n + 100 |
+| Formula |     log2(n)    |n         | n^2       | n^3   |n^3 + n^2 + n + 100 |
 | ------------- |-------------| ------------- |-------------| ------------- |-------------|
 |n = 1000 |9.9|  1000   |  1,000,000 | 1,000,000,000  |   1,001,001,110 |       
 
-You can see that in our formula of **n^3 + n^2 + n + 100**, when n is 1000, the formula returns 1,001,001,110.
+You can see that in our formula of **n^3 + n^2 + n + log2(n) + 100**, when n is 1000, the formula returns approximately 1,001,001,110. 
 
 Moreover, you can see that compared to n^3, the n^2 doesn't move the dial.  It accounts for just 1,000th of our overall cost.  And this is still when our n is relatively small.  Imagine when our input size increases to ten thousand.  So we see that the leading exponent is dominant when calculating the cost of our function. 
 
-Now if we can exclude something like n^2 when n approaches infinity, we can also exclude anything that we multiply n by.  It just doesn't make the type of impact that we care about.  We care about things that change our formula by a factor of n when **n approaches infinity**.  So compared to that, any number you multiply our formula by will be insignificant.    
+Now if we can exclude something like n^2 when n approaches infinity, we can also exclude anything that we multiply n by. It just doesn't make the type of impact that we care about.  We care about things that change our formula by a factor of n when **n approaches infinity**.  So compared to that, any number you multiply our formula by will be insignificant.    
 
 So in summary, when considering asymptoptic time complexity, we only look to the term with the largest exponent, we only consider the worse case scenario, and we ignore co-efficients as well as any smaller terms.  
 
 We call this big O.
+
+NOTE: Big O is a little more involved than the intuition presented above. There are two important additional concepts to note. First of all, when people colloquially say big O (pronounced "big oh"), the _technical_ term they usually mean is big ϴ ("big theta"). Big ϴ includes the concept of a "tight asymptotic bound". Using the example above, when our equation was f(n) = n^3 + n^2 + n + log2(n) + 100, big ϴ requires us to describe this with an upper AND lower asymptotic bound. Thus, it would be correct for us to say that ϴ(n) = n^3, but incorrect for us to say ϴ(n) = n^2 OR ϴ(n) = n^4. Technically, big O notation would allow us to correctly say that our function f(n) is O(n) = n^3 or O(n) = n^4, or O(n) = n^5...etc. Under big O notation we are only establishing an upper bound to our function f(n), and thus it is less precise. For the mathematically-minded of you, the formal mathematical definitions of the two are: 
+ 
+ For ϴ(g(n)) to describe a function f(n), there exist positive constants c1, c2, and n_o such that `0 <= c1 * g(n) <= f(n) <= c2 * g(n)` for all n >= n_o
+ 
+ For O( g(n) ) to describe a function f(n), there exist positive constants c and n_o such that `0 <= f(n) <= c * g(n)` for all n >= n_0
+
+All that being said, colloquially, people say "big oh" when what they actually mean is "big theta". You can interpret all descriptions of O(n) in this text and most others as actually describing ϴ(n). But someone in an interview may ask you the difference between the two!
 
 ![](https://s3-us-west-2.amazonaws.com/curriculum-content/web-development/algorithms/time-complexity.png)
 
