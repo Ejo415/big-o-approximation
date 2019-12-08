@@ -246,7 +246,7 @@ function notNSquared(string, letter){
 
 So in the function above, we don't go through a loop n times, we only go through a loop two times.  So our cost is 2n, and because we ignore multipliers we have a big O of n.  So we don't just count any loops when saying that with each loop the big O increases by a factor of n, we consider nested loops, and ONLY loops whose iterations are proportional to n (e.g. which iterate through our dataset).
 
-Counting loops visible in your code is useful but is not a fail-safe method of determining asymptotic runtime. Among other things, you must be mindful of the runtime of built-in functions you are calling in your code. For example, my code could have a single loop, but inside that loop I sort my input array by using the built-in `sort` method. If the sorting algorithm used by the language is `O(n * log2(n))` (which it most likely be), I now have an overall runtime of `O(n * n * log2(n))`, which is `O(n^2 * log2(n))` - with only a single loop in my code. 
+Counting loops visible in your code is useful but is not a fail-safe method of determining asymptotic runtime. Among other things, you must be mindful of the runtime of built-in functions you are calling in your code. For example, my code could have a single loop, but inside that loop I sort my input array by using the built-in `sort` method. If the sorting algorithm used by the language is `O(n * log2(n))` (which it most likely will be), I now have an overall runtime of `O(n * n * log2(n))`, which is `O(n^2 * log2(n))` - with only a single loop in my code. 
 
 ## Summary
 
