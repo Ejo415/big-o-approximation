@@ -142,7 +142,9 @@ Well, there are a couple of calculations involved in reaching a precise number, 
 
 Ok, so as you see above, as our input size increases, the number of guesses involved increases, but very slowly.   We can answer the question of whether a letter is in a sorted string over one million characters long in only twenty guesses. 
 
-Just as we could express the time complexity of our original method in terms of the size of the input string (n), we can do so with binary search as well.  The time complexity of our binary search function is log2n (log base 2 of n, also written lg(n)).  Log base 2 of n just means, given a number, how many times would you have to press divided by two on a calculator to get down to 1.  Notice that when the size gets really large, like over a million it still only takes us 20 guesses.  Our other formula would cost us the size of n, or over a million. Notice that our table above shows that for the log2(n) algorithm, when our input size **doubles**, our runtime only goes up by 1!
+Just as we could express the time complexity of our original method in terms of the size of the input string (n), we can do so with binary search as well.  The time complexity of our binary search function is log₂n (log base 2 of n, also written lg(n)).  Log base 2 of n means the number of times you would have to press "divided by two" on a calculator to get down to 1, starting with the number n - it's the inverse of the exponent function. 
+
+In our binary search algorithm, when the size of n gets over 1 million, it still only takes us about 20 guesses.  Our other formula would have taken one million guesses for an input of that size. The table above shows that for the log₂(n) algorithm, when our input size **doubles**, our runtime only goes up by 1!
 
 ### Simplifying Time Complexity
 
