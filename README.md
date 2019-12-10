@@ -170,7 +170,7 @@ You can see that in our formula of **n^3 + n^2 + n + log2(n) + 100**, when n is 
 
 Moreover, you can see that compared to n^3, the n^2 doesn't move the dial.  It accounts for just 1,000th of our overall cost.  And this is still when our n is relatively small.  Imagine when our input size increases to ten thousand.  So we see that the leading exponent is dominant when calculating the cost of our function. 
 
-Now if we can exclude something like n^2 when n approaches infinity, we can also exclude anything that we multiply n by. It just doesn't make the type of impact that we care about.  We care about things that change our formula by a factor of n when **n approaches infinity**.  So compared to that, any number you multiply our formula by will be insignificant.    
+Now if we can exclude something like n², we can also exclude any number that we multiply n by. It doesn't make enough impact that we need to count it.  We care about things that change our formula by a factor of n when **n approaches infinity**.  So compared to that, any number we multiply by won't really matter insignificant.    
 
 So in summary, when considering asymptoptic time complexity, we only look to the term with the largest exponent, we only consider the worse case scenario, and we ignore coefficients as well as any smaller terms.  
 
