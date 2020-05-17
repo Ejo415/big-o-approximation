@@ -1,4 +1,6 @@
 ---
-:page_id: 3423
-:course_id: 239
-:canvas_url: https://learning.flatironschool.com/courses/239/pages/big-o-approximation
+:lessons:
+- :id: 3902
+  :course_id: 272
+  :canvas_url: https://learning.flatironschool.com/courses/272/pages/big-o-approximation
+  :type: page
